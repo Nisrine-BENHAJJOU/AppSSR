@@ -45,14 +45,14 @@ public class ClientController {
     public String showEditForm(@PathVariable("id") int id, Model model) {
         ClientDTO client = clientService.getClientDTO(id);
         model.addAttribute("client", client);
-        return "edit_client";
+        return "update_client";
     }
 
     // Update an existing client
     @PostMapping("/update/{id}")
     public String updateClient(@PathVariable("id") int id, @ModelAttribute("client") ClientDTO clientDTO, BindingResult result) {
         if (result.hasErrors()) {
-            return "edit_client";
+            return "update_client";
         }
         clientDTO.setId(id);
         clientService.saveClientDTO(clientDTO);
